@@ -11,12 +11,12 @@ import java.util.List;
 public class UserDaoService {
     private static List<User> users = new ArrayList<>();
 
-    private static int userCount = 3;
+    private static int usersCount = 3;
 
     static {
-        users.add(new User("1", "Adam", new Date()));
-        users.add(new User("2", "Ewa", new Date()));
-        users.add(new User("3", "Brian", new Date()));
+        users.add(new User(1, "Adam", new Date()));
+        users.add(new User(2, "Ewa", new Date()));
+        users.add(new User(3, "Brian", new Date()));
     }
 
     public List<User> findAll() {
@@ -24,12 +24,14 @@ public class UserDaoService {
     }
 
     public User save(User user) {
+        if (user.getId() == null) {
+            user.setId(++usersCount);
+        }
         users.add(user);
-        userCount++;
         return user;
     }
 
-    public User findOne(User user) {
-        return users.stream().filter(user1 -> user.getId().equals(user1.getId())).findFirst().orElse(null);
+    public User findOne(int id) {
+        return users.stream().filter(user -> user.getId() == id).findFirst().orElse(null);
     }
 }

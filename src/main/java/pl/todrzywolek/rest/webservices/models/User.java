@@ -3,21 +3,24 @@ package pl.todrzywolek.rest.webservices.models;
 import java.util.Date;
 
 public class User {
-    private String id;
+    private Integer id;
     private String name;
     private Date birthDate;
 
-    public User(String id, String name, Date birthDate) {
+    public User() {
+    }
+
+    public User(int id, String name, Date birthDate) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
